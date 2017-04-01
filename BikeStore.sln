@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeStore", "BikeStore\BikeStore.csproj", "{E5454BAF-2B4C-4230-82D8-F134B0C62BC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeStore.Tests", "BikeStore.Tests\BikeStore.Tests.csproj", "{972C819C-63B6-4697-84DB-050A653366EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5454BAF-2B4C-4230-82D8-F134B0C62BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5454BAF-2B4C-4230-82D8-F134B0C62BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5454BAF-2B4C-4230-82D8-F134B0C62BC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5454BAF-2B4C-4230-82D8-F134B0C62BC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{972C819C-63B6-4697-84DB-050A653366EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{972C819C-63B6-4697-84DB-050A653366EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{972C819C-63B6-4697-84DB-050A653366EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{972C819C-63B6-4697-84DB-050A653366EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
