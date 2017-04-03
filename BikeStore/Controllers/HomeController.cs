@@ -13,6 +13,7 @@ namespace BikeStore.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Moderator")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
