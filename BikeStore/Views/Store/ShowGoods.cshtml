@@ -1,0 +1,22 @@
+﻿
+@using BikeStore.Models.Store;
+@model Good
+@*@model System.Data.Entity.DbSet<BikeStore.Models.Store.Good>*@
+@section scripts{
+    <script src="~/Scripts/Services/JsonCardModule.js"></script>
+    <script src="~/Scripts/Card/goodcard.directive.js"></script>
+}
+@{
+    ViewBag.Title = "ShowGoods";
+}
+
+
+<div class="container">
+    <div ng-controller="JsonCardController">
+        <input type="text" placeholder="Search good" ng-model="searchCard" />
+        <br>
+        <goodcard ng-repeat="t in goods | filter:{Name: searchCard}" item="t" id="{{$index}}"></goodcard>
+    </div>
+</div>
+
+
