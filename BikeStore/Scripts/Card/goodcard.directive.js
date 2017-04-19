@@ -3,8 +3,8 @@
 
 TC.directive('goodcard', function () {
     var directive = {
-        restrict: 'E',
-        templateUrl: '../Scripts/Card/goodcard.html',
+        restrict: 'EA',
+        templateUrl: '../Scripts/Card/goodcard3.html',
         scope: {
             item: '=',
             id: "@"

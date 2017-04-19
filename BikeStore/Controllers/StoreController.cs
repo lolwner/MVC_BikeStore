@@ -17,8 +17,6 @@ namespace BikeStore.Controllers
         // GET: Store
         public ActionResult ShowGoods()
         {
-            IEnumerable<Good> goods = DB.Goods;
-            ViewBag.Good = goods;
             return View();
         }
 

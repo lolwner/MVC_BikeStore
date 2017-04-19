@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleManagementController.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Store\Good.cs" />
+    <Compile Include="Models\Store\GoodViewModel.cs" />
     <Compile Include="Models\Store\ListOfGoods.cs" />
     <Compile Include="Models\Store\Manufacturer.cs" />
     <Compile Include="Models\Store\Order.cs" />
@@ -236,7 +238,7 @@
     </Content>
     <Content Include="Scripts\Card\goodcard.css" />
     <Content Include="Scripts\Card\goodcard.directive.js" />
-    <Content Include="Scripts\Card\goodcard.html" />
+    <Content Include="Scripts\Card\goodcard3.html" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1019,6 +1021,9 @@
     <Content Include="Views\RoleManagement\RoleManagementView.cshtml" />
     <Content Include="Views\Store\ShowGoods.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\AdminPanel\ControlPanel.cshtml" />
+    <Content Include="Views\AdminPanel\Edit.cshtml" />
+    <Content Include="Views\AdminPanel\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

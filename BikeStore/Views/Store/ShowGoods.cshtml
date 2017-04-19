@@ -1,8 +1,4 @@
-﻿
-@using BikeStore.Models.Store;
-@model Good
-@*@model System.Data.Entity.DbSet<BikeStore.Models.Store.Good>*@
-@section scripts{
+﻿@section scripts{
     <script src="~/Scripts/Services/JsonCardModule.js"></script>
     <script src="~/Scripts/Card/goodcard.directive.js"></script>
 }
@@ -13,9 +9,11 @@
 
 <div class="container">
     <div ng-controller="JsonCardController">
-        <input type="text" placeholder="Search good" ng-model="searchCard" />
+        <input type="text" placeholder="Search good" ng-model="searchCard" class="card" />
         <br>
-        <goodcard ng-repeat="t in goods | filter:{Name: searchCard}" item="t" id="{{$index}}"></goodcard>
+        <div class="catalog">
+            <goodcard ng-repeat="t in goods | filter:{Name: searchCard}" item="t" id="{{$index}}"></goodcard>
+        </div>
     </div>
 </div>
 

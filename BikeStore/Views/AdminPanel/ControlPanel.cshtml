@@ -1,0 +1,26 @@
+﻿@model IList<BikeStore.Models.Store.Good>
+@{
+    ViewBag.Title = "ControlPanel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ControlPanel</h2>
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Price</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Good_ID</td>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@Html.ActionLink("Edit good", "Edit", new { id = item.Good_ID })</td>
+        </tr>
+    }
+    <tr>
+        <td colspan="4">@Html.ActionLink("Add new", "Create")</td>
+        </tr>
+</table>
