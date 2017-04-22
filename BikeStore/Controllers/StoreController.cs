@@ -10,11 +10,6 @@ namespace BikeStore.Controllers
 {
     public class StoreController : Controller
     {
-        private static StoreContext DB = new StoreContext();
-
-        public static string User_Id = System.Web.HttpContext.Current.User.Identity.GetUserId();
-
-        // GET: Store
         public ActionResult ShowGoods()
         {
             return View();
@@ -22,9 +17,10 @@ namespace BikeStore.Controllers
 
         public JsonResult getGoods()
         {
-            IEnumerable<Good> goods = DB.Goods;
-            var JsonGoods = goods.ToList();
-            return Json(JsonGoods, JsonRequestBehavior.AllowGet);
+            using (var db = new StoreContext())
+            {
+                return Json(db.Goods.ToList(), JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

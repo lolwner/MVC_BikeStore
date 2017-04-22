@@ -21,7 +21,7 @@ JsonCard.factory('JsonCardService', ['$http', function ($http) {
 
     var JsonCardService = {};
     JsonCardService.getGoods = function () {
-        return $http.get('/Store/GetGoods');
+        return $http.get('/Store/getGoods');
     };
     return JsonCardService;
 

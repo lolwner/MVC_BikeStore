@@ -13,68 +13,76 @@ namespace BikeStore.Controllers
 {
     public class AdminPanelController : Controller
     {
-        private static StoreContext DB = new StoreContext();
-
-        // GET: AdminPanel
         [Authorize(Roles = "Moderator, Admin")]
         public ActionResult ControlPanel()
         {
-            return View(DB.Goods.ToList());
+            using (var db = new StoreContext())
+            {
+                return View(db.Goods.ToList());
+            }
         }
 
         [Authorize(Roles = "Moderator, Admin")]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Good good = DB.Goods.Find(id);
-            IEnumerable<Manufacturer> manufacturers = DB.Manufacturers.ToList();
-            IEnumerable<Models.Store.Type> types = DB.Types.ToList();
-            GoodViewModel goodVM = new GoodViewModel
-            {
-                Good_ID = good.Good_ID,
-                Name = good.Name,
-                Price = good.Price,
-                Manufacturer_ID = good.Manufacturer_ID,
-                Amount = good.Amount,
-                Type_ID = good.Type_ID,
-                Description = good.Description,
-                ManufacturerVM = manufacturers,
-                TypeVM = types
-            };
+            Good good = new Good();
+            GoodViewModel goodViewModel = new GoodViewModel();
 
-            if (good == null)
+            using (var db = new StoreContext())
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                good = db.Goods.Find(id);
+
+                if (good == null)
+                {
+                    return HttpNotFound();
+                }
+
+                goodViewModel.Good_ID = good.Good_ID;
+                goodViewModel.Name = good.Name;
+                goodViewModel.Price = good.Price;
+                goodViewModel.Manufacturer_ID = good.Manufacturer_ID;
+                goodViewModel.Amount = good.Amount;
+                goodViewModel.Type_ID = good.Type_ID;
+                goodViewModel.Description = good.Description;
+                goodViewModel.ManufacturerVM = db.Manufacturers.ToList();
+                goodViewModel.TypeVM = db.Types.ToList();
             }
-            return View(goodVM);
+
+            return View(goodViewModel);
         }
 
         [Authorize(Roles = "Moderator, Admin")]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(GoodViewModel goodVM)
+        public ActionResult EditPost(GoodViewModel goodViewModel)
         {
-            if (goodVM == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var good = DB.Goods.Find(goodVM.Good_ID);
+            var good = new Good();
 
-            if (TryUpdateModel(good, "",
-               new string[] { "Name", "Price", "Description", "Manufacturer_ID", "Type_ID", "Amount" }))
+            using (var db = new StoreContext())
             {
-                try
+                if (goodViewModel == null)
                 {
-                    DB.SaveChanges();
-                    return RedirectToAction("ControlPanel");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                catch (RetryLimitExceededException /* dex */)
+                good = db.Goods.Find(goodViewModel.Good_ID);
+
+                if (TryUpdateModel(good, "",
+                   new string[] { "Name", "Price", "Description", "Manufacturer_ID", "Type_ID", "Amount" }))
                 {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                    try
+                    {
+                        db.SaveChanges();
+                        return RedirectToAction("ControlPanel");
+                    }
+                    catch (RetryLimitExceededException /* dex */)
+                    {
+                        //Log the error (uncomment dex variable name and add a line here to write a log.
+                        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                    }
                 }
             }
             return View(good);
@@ -83,15 +91,14 @@ namespace BikeStore.Controllers
         [Authorize(Roles = "Moderator, Admin")]
         public ActionResult Create()
         {
-            IEnumerable<Manufacturer> manufacturers = DB.Manufacturers.ToList();
-            IEnumerable<Models.Store.Type> types = DB.Types.ToList();
+            GoodViewModel goodViewModel = new GoodViewModel();
 
-            GoodViewModel goodVM = new GoodViewModel
+            using (var db = new StoreContext())
             {
-                ManufacturerVM = manufacturers,
-                TypeVM = types
-            };
-            return View(goodVM);
+                goodViewModel.ManufacturerVM = db.Manufacturers.ToList();
+                goodViewModel.TypeVM = db.Types.ToList();
+            }
+            return View(goodViewModel);
         }
 
         [Authorize(Roles = "Moderator, Admin")]
@@ -99,20 +106,22 @@ namespace BikeStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Name, Price, Description, Amount, Manufacturer_ID, Type_ID")]Good good)
         {
-            
-            try
+            using (var db = new StoreContext())
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    DB.Goods.Add(good);
-                    DB.SaveChanges();
-                    return RedirectToAction("ControlPanel");
+                    if (ModelState.IsValid)
+                    {
+                        db.Goods.Add(good);
+                        db.SaveChanges();
+                        return RedirectToAction("ControlPanel");
+                    }
                 }
-            }
-            catch (DataException /* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
             }
             return View(good);
         }
@@ -122,16 +131,19 @@ namespace BikeStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            try
+            using (var db = new StoreContext())
             {
-                Good good = DB.Goods.Find(id);
-                DB.Goods.Remove(good);
-                DB.SaveChanges();
-            }
-            catch (RetryLimitExceededException/* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+                try
+                {
+                    Good good = db.Goods.Find(id);
+                    db.Goods.Remove(good);
+                    db.SaveChanges();
+                }
+                catch (RetryLimitExceededException/* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+                }
             }
             return RedirectToAction("ControlPanel");
         }
