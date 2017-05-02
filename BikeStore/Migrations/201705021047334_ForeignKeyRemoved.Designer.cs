@@ -7,13 +7,13 @@ namespace BikeStore.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddPhone : IMigrationMetadata
+    public sealed partial class ForeignKeyRemoved : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddPhone));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ForeignKeyRemoved));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704021535057_AddPhone"; }
+            get { return "201705021047334_ForeignKeyRemoved"; }
         }
         
         string IMigrationMetadata.Source

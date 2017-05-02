@@ -42,7 +42,7 @@ namespace BikeStore.Controllers
             var user = UserManager.FindByEmail(username.Email);
             UserManager.AddToRole(user.Id, "Moderator");
 
-            return View();
+            return RedirectToAction("RoleManagementView");
         }
         
     }

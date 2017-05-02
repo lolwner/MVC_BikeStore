@@ -3,15 +3,13 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using BikeStore.Models.Store;
 
 namespace BikeStore.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-
-        public int Phone { get; set; }
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -32,5 +30,11 @@ namespace BikeStore.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Good> Goods { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ListOfGoods> ListsOfGoods { get; set; }
+        public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<Type> Types { get; set; }
     }
 }

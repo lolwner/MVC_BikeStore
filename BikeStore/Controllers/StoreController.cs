@@ -1,5 +1,4 @@
-﻿using BikeStore.Models.Store;
-using Microsoft.AspNet.Identity;
+﻿using BikeStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,8 @@ namespace BikeStore.Controllers
 {
     public class StoreController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult ShowGoods()
         {
             return View();
@@ -17,10 +18,8 @@ namespace BikeStore.Controllers
 
         public JsonResult getGoods()
         {
-            using (var db = new StoreContext())
-            {
                 return Json(db.Goods.ToList(), JsonRequestBehavior.AllowGet);
-            }
+            
         }
     }
 }

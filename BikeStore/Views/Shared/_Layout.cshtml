@@ -26,9 +26,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Shop", "ShowGoods", "Store")</li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                    {
+                        <li>
+                            @Html.ActionLink("Moderate", "ControlPanel", "AdminPanel");
+                        </li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

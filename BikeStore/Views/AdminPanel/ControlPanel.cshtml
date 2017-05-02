@@ -10,6 +10,7 @@
         <td>ID</td>
         <td>Name</td>
         <td>Price</td>
+        <td>Amount</td>
     </tr>
     @foreach (var item in Model)
     {
@@ -17,10 +18,11 @@
             <td>@item.Good_ID</td>
             <td>@item.Name</td>
             <td>@item.Price</td>
+            <td>@item.Amount</td>
             <td>@Html.ActionLink("Edit good", "Edit", new { id = item.Good_ID })</td>
         </tr>
     }
     <tr>
-        <td colspan="4">@Html.ActionLink("Add new", "Create")</td>
+        <td colspan="5">@Html.ActionLink("Add new", "Create")</td>
         </tr>
 </table>

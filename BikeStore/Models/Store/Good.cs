@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +17,8 @@ namespace BikeStore.Models.Store
 
         [Required]
         public int Type_ID { get; set; }
+
+        public virtual Type type { get; set; }
 
         [StringLength(250)]
         public string Description { get; set; }
