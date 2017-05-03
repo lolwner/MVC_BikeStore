@@ -1,5 +1,7 @@
-﻿using BikeStore.Models;
-using BikeStore.Models.Store;
+﻿using BikeDataAccess;
+using BikeEntities;
+using BikeStore.Models;
+using BikeViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +18,12 @@ namespace BikeStore.Controllers
 
     public class AdminPanelController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db;
+
+        public AdminPanelController()
+        {
+            db = new ApplicationDbContext();
+        }
 
         [Authorize(Roles = "Moderator, Admin")]
         public ActionResult ControlPanel()

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using BikeStore.Models;
 using Microsoft.AspNet.Identity.Owin;
+using BikeDataAccess;
 
 namespace BikeStore.Controllers
 {
@@ -31,8 +32,6 @@ namespace BikeStore.Controllers
         {
             return View();
         }
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

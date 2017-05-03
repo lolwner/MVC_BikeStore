@@ -1,4 +1,4 @@
-﻿using BikeStore.Models;
+﻿using BikeDataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,12 @@ namespace BikeStore.Controllers
 {
     public class StoreController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        IGoodRepository repo;
+
+        public StoreController()
+        {
+            repo = new GoodRepository();
+        }
 
         public ActionResult ShowGoods()
         {
@@ -18,8 +23,7 @@ namespace BikeStore.Controllers
 
         public JsonResult getGoods()
         {
-                return Json(db.Goods.ToList(), JsonRequestBehavior.AllowGet);
-            
+            return Json(repo.GetGoodList(), JsonRequestBehavior.AllowGet);
         }
     }
 }

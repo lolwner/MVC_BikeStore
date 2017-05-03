@@ -1055,6 +1055,20 @@
       <DependentUpon>201705021128484_PhoneDeletedFromModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BikeDataAccess\BikeDataAccess.csproj">
+      <Project>{F1B2AA99-EAC1-44C3-B385-B1747AC36F56}</Project>
+      <Name>BikeDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BikeEntities\BikeEntities.csproj">
+      <Project>{8a5e8d0e-349e-4652-b2c3-9498b759aecb}</Project>
+      <Name>BikeEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BikeViewModels\BikeViewModels.csproj">
+      <Project>{0f706d0c-89f8-4487-a70e-f789a2ca429c}</Project>
+      <Name>BikeViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
