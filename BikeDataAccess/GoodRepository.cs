@@ -25,9 +25,19 @@ namespace BikeDataAccess
             return db.Goods.ToList();
         }
 
-        public Good GetGood(int id)
+        public Good GetGood(int? id)
         {
             return db.Goods.Find(id);
+        }
+
+        public IEnumerable<Manufacturer> GetManufacturersList()
+        {
+            return db.Manufacturers.ToList();
+        }
+
+        public IEnumerable<BikeEntities.Type> GetTypesList()
+        {
+            return db.Types.ToList();
         }
 
         public void CreateGood(Good good)

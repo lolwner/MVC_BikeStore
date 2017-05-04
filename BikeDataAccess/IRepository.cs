@@ -11,7 +11,9 @@ namespace BikeDataAccess
     public interface IGoodRepository
     {
         IEnumerable<Good> GetGoodList();
-        Good GetGood(int id);
+        Good GetGood(int? id);
+        IEnumerable<Manufacturer> GetManufacturersList();
+        IEnumerable<BikeEntities.Type> GetTypesList();
         void CreateGood(Good item);
         void Update(Good item);
         void Delete(int id);

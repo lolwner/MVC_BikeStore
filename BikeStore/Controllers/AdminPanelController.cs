@@ -18,17 +18,17 @@ namespace BikeStore.Controllers
 
     public class AdminPanelController : Controller
     {
-        private ApplicationDbContext db;
+        IGoodRepository repo;
 
         public AdminPanelController()
         {
-            db = new ApplicationDbContext();
+            repo = new GoodRepository();
         }
 
         [Authorize(Roles = "Moderator, Admin")]
         public ActionResult ControlPanel()
         {
-            return View(db.Goods.ToList());
+            return View(repo.GetGoodList());
         }
 
         [Authorize(Roles = "Moderator, Admin")]
@@ -41,7 +41,7 @@ namespace BikeStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            good = db.Goods.Find(id);
+            good = repo.GetGood(id);
 
             if (good == null)
             {
@@ -55,10 +55,9 @@ namespace BikeStore.Controllers
             goodViewModel.Amount = good.Amount;
             goodViewModel.Type_ID = good.Type_ID;
             goodViewModel.Description = good.Description;
-            goodViewModel.ManufacturerVM = db.Manufacturers.ToList();
-            goodViewModel.TypeVM = db.Types.ToList();
-
-
+            goodViewModel.ManufacturerVM = repo.GetManufacturersList();
+            goodViewModel.TypeVM = repo.GetTypesList();
+            
             return View(goodViewModel);
         }
 
@@ -73,14 +72,14 @@ namespace BikeStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            good = db.Goods.Find(goodViewModel.Good_ID);
+            good = repo.GetGood(goodViewModel.Good_ID);
 
             if (TryUpdateModel(good, "",
                new string[] { "Name", "Price", "Description", "Manufacturer_ID", "Type_ID", "Amount" }))
             {
                 try
                 {
-                    db.SaveChanges();
+                    repo.Save();
                     return RedirectToAction("ControlPanel");
                 }
                 catch (RetryLimitExceededException /* dex */)
@@ -97,8 +96,8 @@ namespace BikeStore.Controllers
         {
             GoodViewModel goodViewModel = new GoodViewModel();
 
-            goodViewModel.ManufacturerVM = db.Manufacturers.ToList();
-            goodViewModel.TypeVM = db.Types.ToList();
+            goodViewModel.ManufacturerVM = repo.GetManufacturersList();
+            goodViewModel.TypeVM = repo.GetTypesList();
 
             return View(goodViewModel);
         }
@@ -112,8 +111,8 @@ namespace BikeStore.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Goods.Add(good);
-                    db.SaveChanges();
+                    repo.CreateGood(good);
+                    repo.Save();
                     return RedirectToAction("ControlPanel");
                 }
             }
@@ -132,9 +131,9 @@ namespace BikeStore.Controllers
         {
             try
             {
-                Good good = db.Goods.Find(id);
-                db.Goods.Remove(good);
-                db.SaveChanges();
+                Good good = repo.GetGood(id);
+                repo.Delete(good.Good_ID);
+                repo.Save();
             }
             catch (RetryLimitExceededException/* dex */)
             {
