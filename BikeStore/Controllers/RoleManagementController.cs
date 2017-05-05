@@ -31,15 +31,19 @@ namespace BikeStore.Controllers
 
         public ActionResult RoleManagementView()
         {
-            return View(repo.GetUserList());
+            return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult AssignRole(ApplicationUser username)
+        public JsonResult GetUsersJSON()
         {
-            var user = UserManager.FindByEmail(username.Email);
+            return Json(repo.GetUserList(), JsonRequestBehavior.AllowGet);
+        }
+        
+        [Authorize(Roles = "Admin")]
+        public ActionResult AssignRole(string id)
+        {
+            var user = UserManager.FindById(id);
             UserManager.AddToRole(user.Id, "Moderator");
 
             return RedirectToAction("RoleManagementView");

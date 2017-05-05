@@ -34,8 +34,6 @@ namespace BikeStore.Controllers
         [Authorize(Roles = "Moderator, Admin")]
         public JsonResult GetGoodsJSON()
         {
-            //return Json(new { items = repo.GetGoodList().Select(item => new { Name = item.Name, ID = item.Good_ID, Price = item.Price, Amount = item.Amount }) },
-            //    JsonRequestBehavior.AllowGet);
             return Json(repo.GetGoodList(), JsonRequestBehavior.AllowGet);
         }
 

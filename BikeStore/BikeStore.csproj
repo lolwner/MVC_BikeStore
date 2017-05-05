@@ -1004,7 +1004,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\KendoGrid\Grid.js" />
+    <Content Include="Scripts\KendoGrid\ModeratorGrid.js" />
     <Content Include="Scripts\KendoGrid\jquery.min.js" />
     <Content Include="Scripts\KendoGrid\jszip.min.js" />
     <Content Include="Scripts\KendoGrid\kendo.all.min.js" />
@@ -1051,7 +1051,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\RoleManagement\RoleManagementView.cshtml" />
     <Content Include="Views\Store\ShowGoods.cshtml" />
-    <Content Include="Views\AdminPanel\ControlPanel%28old%29.cshtml" />
     <Content Include="Views\AdminPanel\Edit.cshtml" />
     <Content Include="Views\AdminPanel\Create.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />

@@ -1,5 +1,4 @@
-﻿@model IList<BikeEntities.Good>
-@{
+﻿@{
     ViewBag.Title = "ControlPanel";
     Layout = "~/Views/Shared/_ModeratorLayout.cshtml";
 }
@@ -13,6 +12,9 @@
                     <!-- Main menu -->
                     <li class="current">@Html.ActionLink("Goods list", "ControlPanel")</li>
                     <li>@Html.ActionLink("Add new", "Create")</li>
+                    <li>@if (User.IsInRole("Admin")){
+                        @Html.ActionLink("Manage moderators", "RoleManagementView", "RoleManagement")
+                    }</li>
                 </ul>
             </div>
         </div>

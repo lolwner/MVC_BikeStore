@@ -29,13 +29,6 @@
             @Html.ActionLink("Manage", "ManageLogins") ]
         </dd>
 
-        @if (User.IsInRole("Admin"))
-        {
-            <div>
-                @Html.ActionLink("Manage users roles", "RoleManagementView", "RoleManagement");
-            </div>
-        }
-
         @*
             Phone Numbers can used as a second factor of verification in a two-factor authentication system.
              

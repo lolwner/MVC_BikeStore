@@ -51,7 +51,7 @@ namespace BikeStore
                         "~/Scripts/KendoGrid/jquery.min.js",
                         "~/Scripts/KendoGrid/jszip.min.js",
                         "~/Scripts/KendoGrid/kendo.all.min.js",
-                        "~/Scripts/KendoGrid/Grid.js"));
+                        "~/Scripts/KendoGrid/ModeratorGrid.js"));
         }
     }
 }
