@@ -27,10 +27,31 @@ namespace BikeStore
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/AdminPanel/css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/buttons.css",
+                      "~/Content/calendar.css",
+                      "~/Content/forms.css",
+                      "~/Content/stats.css",
+                      "~/Content/AdminPanel/styles.css"));
+
+            bundles.Add(new StyleBundle("~/Content/KendoGrid/css").Include(
+                      "~/Content/KendoGrid/bootstrap.min.css",
+                      "~/Content/KendoGrid/kendo.common.min.css",
+                      "~/Content/KendoGrid/kendo.default.min.css",
+                      "~/Content/KendoGrid/kendo.rtl.min.css",
+                      "~/Content/KendoGrid/site.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/index.run").Include(
                         "~/Scripts/index.run.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+                        "~/Scripts/KendoGrid/jquery.min.js",
+                        "~/Scripts/KendoGrid/jszip.min.js",
+                        "~/Scripts/KendoGrid/kendo.all.min.js",
+                        "~/Scripts/KendoGrid/Grid.js"));
         }
     }
 }

@@ -221,9 +221,23 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminPanel\bootstrap.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\AdminPanel\buttons.css" />
+    <Content Include="Content\AdminPanel\calendar.css" />
+    <Content Include="Content\AdminPanel\forms.css" />
+    <Content Include="Content\KendoGrid\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\KendoGrid\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="Content\KendoGrid\fonts\glyphs\WebComponentsIcons.svg" />
     <Content Include="Content\Goods.css" />
+    <Content Include="Content\AdminPanel\stats.css" />
+    <Content Include="Content\AdminPanel\styles.css" />
+    <Content Include="Content\KendoGrid\bootstrap.min.css" />
+    <Content Include="Content\KendoGrid\kendo.common.min.css" />
+    <Content Include="Content\KendoGrid\kendo.default.min.css" />
+    <Content Include="Content\KendoGrid\kendo.rtl.min.css" />
+    <Content Include="Content\KendoGrid\site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -231,6 +245,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\AdminPanel\calendar.js" />
+    <Content Include="Scripts\AdminPanel\custom.js" />
+    <Content Include="Scripts\AdminPanel\editors.js" />
+    <Content Include="Scripts\AdminPanel\forms.js" />
+    <Content Include="Scripts\AdminPanel\stats.js" />
+    <Content Include="Scripts\AdminPanel\tables.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -967,6 +987,15 @@
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
     <Content Include="Scripts\index.run.js" />
+    <Content Include="Content\KendoGrid\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\KendoGrid\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\KendoGrid\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\KendoGrid\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="Content\KendoGrid\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="Content\KendoGrid\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="Content\KendoGrid\fonts\glyphs\WebComponentsIcons.eot" />
+    <Content Include="Content\KendoGrid\fonts\glyphs\WebComponentsIcons.ttf" />
+    <Content Include="Content\KendoGrid\fonts\glyphs\WebComponentsIcons.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -975,6 +1004,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\KendoGrid\Grid.js" />
+    <Content Include="Scripts\KendoGrid\jquery.min.js" />
+    <Content Include="Scripts\KendoGrid\jszip.min.js" />
+    <Content Include="Scripts\KendoGrid\kendo.all.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -1018,11 +1051,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\RoleManagement\RoleManagementView.cshtml" />
     <Content Include="Views\Store\ShowGoods.cshtml" />
-    <Content Include="Views\AdminPanel\ControlPanel.cshtml" />
+    <Content Include="Views\AdminPanel\ControlPanel%28old%29.cshtml" />
     <Content Include="Views\AdminPanel\Edit.cshtml" />
     <Content Include="Views\AdminPanel\Create.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Shared\_ModeratorLayout.cshtml" />
+    <Content Include="Views\AdminPanel\ControlPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

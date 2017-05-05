@@ -9,7 +9,14 @@ namespace BikeStore.Controllers
 {
     public class RoleManagementController : Controller
     {
+        IUserRepository repo;
         private ApplicationUserManager _userManager;
+
+        public RoleManagementController()
+        {
+            repo = new UserRepository();
+        }
+        
         public ApplicationUserManager UserManager
         {
             get
@@ -22,15 +29,9 @@ namespace BikeStore.Controllers
             }
         }
 
-        // GET: RoleManagement
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult RoleManagementView()
         {
-            return View();
+            return View(repo.GetUserList());
         }
 
         [HttpPost]

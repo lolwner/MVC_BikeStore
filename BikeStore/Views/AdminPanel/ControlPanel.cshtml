@@ -1,28 +1,42 @@
 ﻿@model IList<BikeEntities.Good>
 @{
     ViewBag.Title = "ControlPanel";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_ModeratorLayout.cshtml";
 }
+<br>
+<br>
+<div class="page-content">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li class="current">@Html.ActionLink("Goods list", "ControlPanel")</li>
+                    <li>@Html.ActionLink("Add new", "Create")</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                    <div class="content-box-large">
+                            <div class="panel-title">Goods editing</div>
+                        
+                        <div class="panel-body">
 
-<h2>ControlPanel</h2>
-<table border="1">
-    <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Price</td>
-        <td>Amount</td>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Good_ID</td>
-            <td>@item.Name</td>
-            <td>@item.Price</td>
-            <td>@item.Amount</td>
-            <td>@Html.ActionLink("Edit good", "Edit", new { id = item.Good_ID })</td>
-        </tr>
-    }
-    <tr>
-        <td colspan="5">@Html.ActionLink("Add new", "Create")</td>
-        </tr>
-</table>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-18 col-md-12">
+                                        <div id="grid" style="height:550px;">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+</div>
