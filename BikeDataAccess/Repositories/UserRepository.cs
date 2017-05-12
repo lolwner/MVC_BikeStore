@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BikeDataAccess
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository
     {
         private ApplicationDbContext db;
 

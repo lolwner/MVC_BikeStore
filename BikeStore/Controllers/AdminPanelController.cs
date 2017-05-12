@@ -1,4 +1,5 @@
 ﻿using BikeDataAccess;
+using BikeDataAccess.Repositories;
 using BikeEntities;
 using BikeStore.Models;
 using BikeViewModels;
@@ -14,15 +15,21 @@ using System.Web.Mvc;
 
 namespace BikeStore.Controllers
 {
-
-
     public class AdminPanelController : Controller
     {
-        IGoodRepository repo;
+        //IGoodRepository repo;
+        private ApplicationDbContext _context;
+        private ManufacturerRepository _manufacturerRepository;
+        private TypeRepository _typeRepository;
+        private GoodRepository _goodRepository;
 
         public AdminPanelController()
         {
-            repo = new GoodRepository();
+            //repo = new GoodRepository();
+            _context = new ApplicationDbContext();
+            _manufacturerRepository = new ManufacturerRepository(_context);
+            _typeRepository = new TypeRepository(_context);
+            _goodRepository = new GoodRepository(_context);
         }
 
         [Authorize(Roles = "Moderator, Admin")]
@@ -34,11 +41,11 @@ namespace BikeStore.Controllers
         [Authorize(Roles = "Moderator, Admin")]
         public JsonResult GetGoodsJSON()
         {
-            return Json(repo.GetGoodList(), JsonRequestBehavior.AllowGet);
+            return Json(_goodRepository.Get(), JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = "Moderator, Admin")]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             Good good = new Good();
             GoodViewModel goodViewModel = new GoodViewModel();
@@ -47,22 +54,22 @@ namespace BikeStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            good = repo.GetGood(id);
+            good = _goodRepository.GetByID(id);
 
             if (good == null)
             {
                 return HttpNotFound();
             }
 
-            goodViewModel.Good_ID = good.Good_ID;
+            goodViewModel.Good_ID = good.Id;
             goodViewModel.Name = good.Name;
             goodViewModel.Price = good.Price;
             goodViewModel.Manufacturer_ID = good.Manufacturer_ID;
             goodViewModel.Amount = good.Amount;
             goodViewModel.Type_ID = good.Type_ID;
             goodViewModel.Description = good.Description;
-            goodViewModel.ManufacturerVM = repo.GetManufacturersList();
-            goodViewModel.TypeVM = repo.GetTypesList();
+            goodViewModel.ManufacturerVM = _manufacturerRepository.Get();
+            goodViewModel.TypeVM = _typeRepository.Get();
             
             return View(goodViewModel);
         }
@@ -78,14 +85,14 @@ namespace BikeStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            good = repo.GetGood(goodViewModel.Good_ID);
+            good = _goodRepository.GetByID(goodViewModel.Good_ID);
 
             if (TryUpdateModel(good, "",
                new string[] { "Name", "Price", "Description", "Manufacturer_ID", "Type_ID", "Amount" }))
             {
                 try
                 {
-                    repo.Save();
+                    _goodRepository.Save();
                     return RedirectToAction("ControlPanel");
                 }
                 catch (RetryLimitExceededException /* dex */)
@@ -102,8 +109,8 @@ namespace BikeStore.Controllers
         {
             GoodViewModel goodViewModel = new GoodViewModel();
 
-            goodViewModel.ManufacturerVM = repo.GetManufacturersList();
-            goodViewModel.TypeVM = repo.GetTypesList();
+            goodViewModel.ManufacturerVM = _manufacturerRepository.Get();
+            goodViewModel.TypeVM = _typeRepository.Get();
 
             return View(goodViewModel);
         }
@@ -117,8 +124,8 @@ namespace BikeStore.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    repo.CreateGood(good);
-                    repo.Save();
+                    _goodRepository.Insert(good);
+                    _goodRepository.Save();
                     return RedirectToAction("ControlPanel");
                 }
             }
@@ -133,13 +140,12 @@ namespace BikeStore.Controllers
         [Authorize(Roles = "Moderator, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             try
             {
-                Good good = repo.GetGood(id);
-                repo.Delete(good.Good_ID);
-                repo.Save();
+                _goodRepository.Delete(id);
+                _goodRepository.Save();
             }
             catch (RetryLimitExceededException/* dex */)
             {

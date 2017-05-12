@@ -245,12 +245,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\AdminPanel\calendar.js" />
-    <Content Include="Scripts\AdminPanel\custom.js" />
-    <Content Include="Scripts\AdminPanel\editors.js" />
-    <Content Include="Scripts\AdminPanel\forms.js" />
-    <Content Include="Scripts\AdminPanel\stats.js" />
-    <Content Include="Scripts\AdminPanel\tables.js" />
+    <Content Include="Scripts\AdminPanel\ModeratorGrid.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1004,13 +999,13 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\KendoGrid\ModeratorGrid.js" />
     <Content Include="Scripts\KendoGrid\jquery.min.js" />
     <Content Include="Scripts\KendoGrid\jszip.min.js" />
     <Content Include="Scripts\KendoGrid\kendo.all.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\RoleManagement\RoleGrid.js" />
     <Content Include="Scripts\Services\JsonCardModule.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config">

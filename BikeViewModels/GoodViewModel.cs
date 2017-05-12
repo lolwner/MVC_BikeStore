@@ -9,9 +9,9 @@ namespace BikeViewModels
 {
     public class GoodViewModel
     {
-        public int Good_ID { get; set; }
-        public int Manufacturer_ID { get; set; }
-        public int Type_ID { get; set; }
+        public string Good_ID { get; set; }
+        public string Manufacturer_ID { get; set; }
+        public string Type_ID { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
         public string Name { get; set; }

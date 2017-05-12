@@ -9,7 +9,7 @@ namespace BikeStore.Controllers
 {
     public class RoleManagementController : Controller
     {
-        IUserRepository repo;
+        UserRepository repo;
         private ApplicationUserManager _userManager;
 
         public RoleManagementController()

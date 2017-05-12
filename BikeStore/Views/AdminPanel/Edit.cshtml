@@ -63,7 +63,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Manufacturer_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownListFor(m => m.Manufacturer_ID, new SelectList(Model.ManufacturerVM, "Manufacturer_ID", "Name"), htmlAttributes: new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.Manufacturer_ID, new SelectList(Model.ManufacturerVM, "Id", "Name"), htmlAttributes: new { @class = "form-control" })
                                     </div>
                                 </div>
                                 <br>
@@ -78,26 +78,13 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Type_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.DropDownListFor(m => m.Type_ID, new SelectList(Model.TypeVM, "Type_ID", "Name"), htmlAttributes: new { @class = "form-control" })
+                                        @Html.DropDownListFor(m => m.Type_ID, new SelectList(Model.TypeVM, "Id", "Name"), htmlAttributes: new { @class = "form-control" })
                                     </div>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                                         <input type="submit" value="Save" class="btn btn-default" />
-                                    </div>
-
-                                    @using (Html.BeginForm("Delete", "AdminPanel", new { id = Model.Good_ID }, FormMethod.Post))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <br>
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <button class="btn btn-danger">Delete</button>
-                                        </div>
-                                    }
-
-                                    <div>
-                                        @Html.ActionLink("Back to goods", "ControlPanel", new { @class = "btn btn-default" })
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +93,23 @@
                 </div>
             </div>
         }
+        @using (Html.BeginForm("Delete", "AdminPanel", new { id = Model.Good_ID }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <br>
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-danger">Delete</button>
+            </div>
+        }
 
-        
+        <div>
+            @Html.ActionLink("Back to goods", "ControlPanel", new { @class = "btn btn-default" })
+        </div>
+
+
+
+
+
     </div>
+
 </div>

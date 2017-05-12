@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace BikeEntities
 {
-    public class Type
+    public class Manufacturer : BaseEntity
     {
-        [Key]
-        public int Type_ID { get; set; }
-
         [Required]
         [StringLength(50)]
         public string Name { get; set; }

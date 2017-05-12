@@ -50,8 +50,13 @@ namespace BikeStore
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
                         "~/Scripts/KendoGrid/jquery.min.js",
                         "~/Scripts/KendoGrid/jszip.min.js",
-                        "~/Scripts/KendoGrid/kendo.all.min.js",
-                        "~/Scripts/KendoGrid/ModeratorGrid.js"));
+                        "~/Scripts/KendoGrid/kendo.all.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/AdminPanel").Include(
+                        "~/Scripts/AdminPanel/ModeratorGrid.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/RoleManagement").Include(
+                        "~/Scripts/RoleManagement/RoleGrid.js"));
         }
     }
 }

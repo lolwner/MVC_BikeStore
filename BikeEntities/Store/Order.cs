@@ -7,18 +7,15 @@ using System.Threading.Tasks;
 
 namespace BikeEntities
 {
-    public class ListOfGoods
+    public class Order : BaseEntity
     {
-        [Key]
-        public int List_ID { get; set; }
+        [Required]
+        public string List_ID { get; set; }
 
         [Required]
-        public int Order_ID { get; set; }
+        public string Client_ID { get; set; }
 
         [Required]
-        public int Good_ID { get; set; }
-
-        [Required]
-        public int Amount { get; set; }
+        public double Summary { get; set; }
     }
 }

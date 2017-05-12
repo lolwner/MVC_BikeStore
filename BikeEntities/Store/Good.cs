@@ -7,18 +7,13 @@ using System.Threading.Tasks;
 
 namespace BikeEntities
 {
-    public class Good
+    public class Good : BaseEntity
     {
-        [Key]
-        public int Good_ID { get; set; }
+        [Required]
+        public string Manufacturer_ID { get; set; }
 
         [Required]
-        public int Manufacturer_ID { get; set; }
-
-        [Required]
-        public int Type_ID { get; set; }
-
-        public virtual Type type { get; set; }
+        public string Type_ID { get; set; }
 
         [StringLength(250)]
         public string Description { get; set; }
