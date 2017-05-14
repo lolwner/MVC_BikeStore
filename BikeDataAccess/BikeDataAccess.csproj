@@ -60,8 +60,6 @@
   <ItemGroup>
     <Compile Include="Base\BaseRepository.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="GoodRepository%28old%29.cs" />
-    <Compile Include="IRepository%28old%29.cs" />
     <Compile Include="Migrations\201705121329262_BaseEntityUsage.cs" />
     <Compile Include="Migrations\201705121329262_BaseEntityUsage.Designer.cs">
       <DependentUpon>201705121329262_BaseEntityUsage.cs</DependentUpon>

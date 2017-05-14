@@ -12,6 +12,12 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using BikeStore.Models;
 using BikeDataAccess;
+using SendGrid.Helpers.Mail;
+using SendGrid;
+using System.Net;
+using System.Configuration;
+using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace BikeStore
 {
@@ -20,8 +26,42 @@ namespace BikeStore
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
+            var client = new SendGridClient("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");
+
+            // Send a Single Email using the Mail Helper
+            var from = new EmailAddress("test@example.com", "Example User");
+            var subject = message.Subject;
+            var to = new EmailAddress(message.Destination, "User");
+            //var plainTextContent = "Hello, Email from the helper [SendSingleEmailAsync]!";
+            var htmlContent = message.Body;
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlContent);
+
+            client.SendEmailAsync(msg);
             return Task.FromResult(0);
+
         }
+
+
+        //static async Task Execute()
+        //{
+        //    var apiKey = Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
+        //    var client = new SendGridClient(apiKey);
+
+        //    // Send a Single Email using the Mail Helper
+        //    var from = new EmailAddress("test@example.com", "Example User");
+        //    var subject = "Hello World from the SendGrid CSharp Library Helper!";
+        //    var to = new EmailAddress("test@example.com", "Example User");
+        //    var plainTextContent = "Hello, Email from the helper [SendSingleEmailAsync]!";
+        //    var htmlContent = "<strong>Hello, Email from the helper! [SendSingleEmailAsync]</strong>";
+        //    var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+
+        //    var response = await client.SendEmailAsync(msg);
+        //    Console.WriteLine(msg.Serialize());
+        //    Console.WriteLine(response.StatusCode);
+        //    Console.WriteLine(response.Headers);
+        //    Console.WriteLine("\n\nPress <Enter> to continue.");
+        //    Console.ReadLine();
+        //}
     }
 
     public class SmsService : IIdentityMessageService
@@ -36,15 +76,12 @@ namespace BikeStore
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
-
-
-
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -85,7 +122,7 @@ namespace BikeStore
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;

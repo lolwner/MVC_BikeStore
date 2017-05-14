@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using BikeStore.Models;
 using Microsoft.AspNet.Identity.Owin;
 using BikeDataAccess;
+using BikeEntities.Base;
 
 namespace BikeStore.Controllers
 {
@@ -29,22 +30,23 @@ namespace BikeStore.Controllers
             }
         }
 
+        [Authorize(Roles = nameof(Roles.Admin))]
         public ActionResult RoleManagementView()
         {
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = nameof(Roles.Admin))]
         public JsonResult GetUsersJSON()
         {
             return Json(repo.GetUserList(), JsonRequestBehavior.AllowGet);
         }
         
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = nameof(Roles.Admin))]
         public ActionResult AssignRole(string id)
         {
             var user = UserManager.FindById(id);
-            UserManager.AddToRole(user.Id, "Moderator");
+            UserManager.AddToRole(user.Id, nameof(Roles.Moderator));
 
             return RedirectToAction("RoleManagementView");
         }

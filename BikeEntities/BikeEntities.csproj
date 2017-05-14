@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseEntity.cs" />
+    <Compile Include="Base\Roles.cs" />
     <Compile Include="Store\Good.cs" />
     <Compile Include="Store\ListOfGoods.cs" />
     <Compile Include="Store\Manufacturer.cs" />

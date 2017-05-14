@@ -10,7 +10,6 @@ namespace BikeStore.Controllers
 {
     public class StoreController : Controller
     {
-        //GoodRepository repo;
         private GoodRepository _goodRepository;
         private ApplicationDbContext _context;
 

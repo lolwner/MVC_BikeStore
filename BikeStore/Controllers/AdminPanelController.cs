@@ -1,6 +1,7 @@
 ﻿using BikeDataAccess;
 using BikeDataAccess.Repositories;
 using BikeEntities;
+using BikeEntities.Base;
 using BikeStore.Models;
 using BikeViewModels;
 using System;
@@ -17,7 +18,6 @@ namespace BikeStore.Controllers
 {
     public class AdminPanelController : Controller
     {
-        //IGoodRepository repo;
         private ApplicationDbContext _context;
         private ManufacturerRepository _manufacturerRepository;
         private TypeRepository _typeRepository;
@@ -25,26 +25,25 @@ namespace BikeStore.Controllers
 
         public AdminPanelController()
         {
-            //repo = new GoodRepository();
             _context = new ApplicationDbContext();
             _manufacturerRepository = new ManufacturerRepository(_context);
             _typeRepository = new TypeRepository(_context);
             _goodRepository = new GoodRepository(_context);
         }
 
-        [Authorize(Roles = "Moderator, Admin")]
+        [Authorize(Roles = nameof(Roles.Moderator))]
         public ActionResult ControlPanel()
         {
             return View();
         }
 
-        [Authorize(Roles = "Moderator, Admin")]
+        [Authorize(Roles = nameof(Roles.Moderator))]
         public JsonResult GetGoodsJSON()
         {
             return Json(_goodRepository.Get(), JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize(Roles = "Moderator, Admin")]
+        [Authorize(Roles = nameof(Roles.Moderator))]
         public ActionResult Edit(string id)
         {
             Good good = new Good();
@@ -74,7 +73,7 @@ namespace BikeStore.Controllers
             return View(goodViewModel);
         }
 
-        [Authorize(Roles = "Moderator, Admin")]
+        [Authorize(Roles = nameof(Roles.Moderator))]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(GoodViewModel goodViewModel)
@@ -104,7 +103,7 @@ namespace BikeStore.Controllers
             return View(good);
         }
 
-        [Authorize(Roles = "Moderator, Admin")]
+        [Authorize(Roles = nameof(Roles.Moderator))]
         public ActionResult Create()
         {
             GoodViewModel goodViewModel = new GoodViewModel();
@@ -115,7 +114,7 @@ namespace BikeStore.Controllers
             return View(goodViewModel);
         }
 
-        [Authorize(Roles = "Moderator, Admin")]
+        [Authorize(Roles = nameof(Roles.Moderator))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Name, Price, Description, Amount, Manufacturer_ID, Type_ID")]Good good)
@@ -137,7 +136,7 @@ namespace BikeStore.Controllers
             return View(good);
         }
 
-        [Authorize(Roles = "Moderator, Admin")]
+        [Authorize(Roles = nameof(Roles.Moderator))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id)
