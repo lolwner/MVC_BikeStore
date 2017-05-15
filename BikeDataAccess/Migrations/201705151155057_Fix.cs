@@ -3,58 +3,11 @@ namespace BikeDataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class BaseEntityUsage : DbMigration
+    public partial class Fix : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.Goods",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Manufacturer_ID = c.String(nullable: false),
-                        Type_ID = c.String(nullable: false),
-                        Description = c.String(maxLength: 250),
-                        Price = c.Double(nullable: false),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Amount = c.Int(nullable: false),
-                        CreationDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.ListOfGoods",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Order_ID = c.String(nullable: false),
-                        Good_ID = c.String(nullable: false),
-                        Amount = c.String(nullable: false),
-                        CreationDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Manufacturers",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        CreationDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Orders",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        List_ID = c.String(nullable: false),
-                        Client_ID = c.String(nullable: false),
-                        Summary = c.Double(nullable: false),
-                        CreationDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
+           
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -79,15 +32,7 @@ namespace BikeDataAccess.Migrations
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
             
-            CreateTable(
-                "dbo.Types",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        CreationDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
+            
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -151,13 +96,8 @@ namespace BikeDataAccess.Migrations
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.Types");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Orders");
-            DropTable("dbo.Manufacturers");
-            DropTable("dbo.ListOfGoods");
-            DropTable("dbo.Goods");
         }
     }
 }

@@ -10,10 +10,10 @@ namespace BikeEntities
     public class Good : BaseEntity
     {
         [Required]
-        public string Manufacturer_ID { get; set; }
+        public string ManufacturerId { get; set; }
 
         [Required]
-        public string Type_ID { get; set; }
+        public string TypeId { get; set; }
 
         [StringLength(250)]
         public string Description { get; set; }

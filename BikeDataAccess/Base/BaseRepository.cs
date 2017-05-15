@@ -20,12 +20,12 @@ namespace BikeDataAccess.Base
             this.dbSet = context.Set<TEntity>();
         }
 
-        public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
-        {
-            return dbSet.SqlQuery(query, parameters).ToList();
-        }
+        //public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
+        //{
+        //    return dbSet.SqlQuery(query, parameters).ToList();
+        //}
 
-        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
+        public virtual IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = dbSet;
 
@@ -42,17 +42,12 @@ namespace BikeDataAccess.Base
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return orderBy(query);
             }
             else
             {
-                 return query.ToList();
+                 return query;
             }
-        }
-
-        public virtual TEntity GetByID(object id)
-        {
-            return dbSet.Find(id);
         }
 
         public virtual void Insert(TEntity entity)

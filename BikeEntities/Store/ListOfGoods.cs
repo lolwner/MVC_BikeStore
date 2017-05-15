@@ -10,10 +10,10 @@ namespace BikeEntities
     public class ListOfGoods : BaseEntity
     {
         [Required]
-        public string Order_ID { get; set; }
+        public string OrderId { get; set; }
 
         [Required]
-        public string Good_ID { get; set; }
+        public string GoodId { get; set; }
 
         [Required]
         public string Amount { get; set; }

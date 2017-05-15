@@ -60,9 +60,13 @@
   <ItemGroup>
     <Compile Include="Base\BaseRepository.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="Migrations\201705121329262_BaseEntityUsage.cs" />
-    <Compile Include="Migrations\201705121329262_BaseEntityUsage.Designer.cs">
-      <DependentUpon>201705121329262_BaseEntityUsage.cs</DependentUpon>
+    <Compile Include="Migrations\201705151155057_Fix.cs" />
+    <Compile Include="Migrations\201705151155057_Fix.Designer.cs">
+      <DependentUpon>201705151155057_Fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705151158512_StoreModelsCreate.cs" />
+    <Compile Include="Migrations\201705151158512_StoreModelsCreate.Designer.cs">
+      <DependentUpon>201705151158512_StoreModelsCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,8 +90,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705121329262_BaseEntityUsage.resx">
-      <DependentUpon>201705121329262_BaseEntityUsage.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705151155057_Fix.resx">
+      <DependentUpon>201705151155057_Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705151158512_StoreModelsCreate.resx">
+      <DependentUpon>201705151158512_StoreModelsCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

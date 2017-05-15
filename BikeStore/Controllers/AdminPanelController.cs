@@ -40,7 +40,7 @@ namespace BikeStore.Controllers
         [Authorize(Roles = nameof(Roles.Moderator))]
         public JsonResult GetGoodsJSON()
         {
-            return Json(_goodRepository.Get(), JsonRequestBehavior.AllowGet);
+            return Json(_goodRepository.Get().ToList(), JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = nameof(Roles.Moderator))]
@@ -53,23 +53,23 @@ namespace BikeStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            good = _goodRepository.GetByID(id);
+            good = _goodRepository.Get(x => x.Id == id).FirstOrDefault();
 
             if (good == null)
             {
                 return HttpNotFound();
             }
 
-            goodViewModel.Good_ID = good.Id;
+            goodViewModel.GoodId = good.Id;
             goodViewModel.Name = good.Name;
             goodViewModel.Price = good.Price;
-            goodViewModel.Manufacturer_ID = good.Manufacturer_ID;
+            goodViewModel.ManufacturerId = good.ManufacturerId;
             goodViewModel.Amount = good.Amount;
-            goodViewModel.Type_ID = good.Type_ID;
+            goodViewModel.TypeId = good.TypeId;
             goodViewModel.Description = good.Description;
             goodViewModel.ManufacturerVM = _manufacturerRepository.Get();
             goodViewModel.TypeVM = _typeRepository.Get();
-            
+
             return View(goodViewModel);
         }
 
@@ -84,21 +84,22 @@ namespace BikeStore.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            good = _goodRepository.GetByID(goodViewModel.Good_ID);
+            good = _goodRepository.Get(x => x.Id == goodViewModel.GoodId).FirstOrDefault();
 
-            if (TryUpdateModel(good, "",
+            if (!TryUpdateModel(good, "",
                new string[] { "Name", "Price", "Description", "Manufacturer_ID", "Type_ID", "Amount" }))
             {
-                try
-                {
-                    _goodRepository.Save();
-                    return RedirectToAction("ControlPanel");
-                }
-                catch (RetryLimitExceededException /* dex */)
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
+                return View(good);
+            }
+            try
+            {
+                _goodRepository.Save();
+                return RedirectToAction("ControlPanel");
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
             }
             return View(good);
         }
@@ -108,8 +109,8 @@ namespace BikeStore.Controllers
         {
             GoodViewModel goodViewModel = new GoodViewModel();
 
-            goodViewModel.ManufacturerVM = _manufacturerRepository.Get();
-            goodViewModel.TypeVM = _typeRepository.Get();
+            goodViewModel.ManufacturerVM = _manufacturerRepository.Get().ToList();
+            goodViewModel.TypeVM = _typeRepository.Get().ToList();
 
             return View(goodViewModel);
         }
@@ -117,22 +118,22 @@ namespace BikeStore.Controllers
         [Authorize(Roles = nameof(Roles.Moderator))]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, Price, Description, Amount, Manufacturer_ID, Type_ID")]Good good)
+        public ActionResult Create([Bind(Include = "Name, Price, Description, Amount, ManufacturerId, TypeId")]Good good)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _goodRepository.Insert(good);
-                    _goodRepository.Save();
-                    return RedirectToAction("ControlPanel");
-                }
+                _goodRepository.Insert(good);
+                _goodRepository.Save();
+                return RedirectToAction("ControlPanel");
             }
-            catch (DataException /* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            }
+            //try
+            //{
+            //    _goodRepository.Save();
+            //}
+            //catch (DataException)
+            //{
+            //    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            //}
             return View(good);
         }
 

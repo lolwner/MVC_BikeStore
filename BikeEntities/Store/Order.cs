@@ -10,10 +10,10 @@ namespace BikeEntities
     public class Order : BaseEntity
     {
         [Required]
-        public string List_ID { get; set; }
+        public string ListId { get; set; }
 
         [Required]
-        public string Client_ID { get; set; }
+        public string ClientId { get; set; }
 
         [Required]
         public double Summary { get; set; }

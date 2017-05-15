@@ -7,13 +7,13 @@ namespace BikeDataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class BaseEntityUsage : IMigrationMetadata
+    public sealed partial class StoreModelsCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(BaseEntityUsage));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(StoreModelsCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705121329262_BaseEntityUsage"; }
+            get { return "201705151158512_StoreModelsCreate"; }
         }
         
         string IMigrationMetadata.Source

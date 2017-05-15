@@ -26,7 +26,7 @@ namespace BikeStore.Controllers
 
         public JsonResult getGoods()
         {
-            return Json(_goodRepository.Get(), JsonRequestBehavior.AllowGet);
+            return Json(_goodRepository.Get().ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -219,6 +219,14 @@
     <Compile Include="Migrations\201705021128484_PhoneDeletedFromModel.Designer.cs">
       <DependentUpon>201705021128484_PhoneDeletedFromModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705151133200_IdChange.cs" />
+    <Compile Include="Migrations\201705151133200_IdChange.Designer.cs">
+      <DependentUpon>201705151133200_IdChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705151150152_UserTest.cs" />
+    <Compile Include="Migrations\201705151150152_UserTest.Designer.cs">
+      <DependentUpon>201705151150152_UserTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1080,6 +1088,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705021128484_PhoneDeletedFromModel.resx">
       <DependentUpon>201705021128484_PhoneDeletedFromModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705151133200_IdChange.resx">
+      <DependentUpon>201705151133200_IdChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705151150152_UserTest.resx">
+      <DependentUpon>201705151150152_UserTest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
