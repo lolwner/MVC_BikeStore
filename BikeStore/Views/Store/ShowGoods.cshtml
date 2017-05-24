@@ -1,20 +1,19 @@
-﻿@section scripts{
-    <script src="~/Scripts/Services/JsonCardModule.js"></script>
-    <script src="~/Scripts/Card/goodcard.directive.js"></script>
-}
-@{
+﻿@{
     ViewBag.Title = "ShowGoods";
+    Layout = "~/Views/Shared/_StoreLayout.cshtml";
 }
 
+<div class="panel-body">
 
-<div class="container">
-    <div ng-controller="JsonCardController">
-        <input type="text" placeholder="Search good" ng-model="searchCard" class="card" />
-        <br>
-        <div class="catalog">
-            <goodcard ng-repeat="t in goods | filter:{Name: searchCard}" item="t" id="{{$index}}"></goodcard>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-18 col-md-12">
+
+                <div id="productGrid" style="height:550px;"></div>
+            </div>
         </div>
     </div>
+
 </div>
 
 

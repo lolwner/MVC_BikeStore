@@ -26,17 +26,18 @@ namespace BikeStore
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            var client = new SendGridClient("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");
+            //don`t forget token
+            //var client = new SendGridClient("token");
 
-            // Send a Single Email using the Mail Helper
-            var from = new EmailAddress("test@example.com", "Example User");
-            var subject = message.Subject;
-            var to = new EmailAddress(message.Destination, "User");
-            //var plainTextContent = "Hello, Email from the helper [SendSingleEmailAsync]!";
-            var htmlContent = message.Body;
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlContent);
+            //// Send a Single Email using the Mail Helper
+            //var from = new EmailAddress("test@example.com", "Example User");
+            //var subject = message.Subject;
+            //var to = new EmailAddress(message.Destination, "User");
+            ////var plainTextContent = "Hello, Email from the helper [SendSingleEmailAsync]!";
+            //var htmlContent = message.Body;
+            //var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlContent);
 
-            client.SendEmailAsync(msg);
+            //client.SendEmailAsync(msg);
             return Task.FromResult(0);
 
         }

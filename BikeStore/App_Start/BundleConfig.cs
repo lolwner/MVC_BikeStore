@@ -42,6 +42,10 @@ namespace BikeStore
                       "~/Content/KendoGrid/kendo.rtl.min.css",
                       "~/Content/KendoGrid/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/Store").Include(
+                      "~/Content/Store/jquery.gridly.css",
+                      "~/Content/Store/sample.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/index.run").Include(
@@ -57,6 +61,9 @@ namespace BikeStore
 
             bundles.Add(new ScriptBundle("~/bundles/RoleManagement").Include(
                         "~/Scripts/RoleManagement/RoleGrid.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Store").Include(
+                "~/Scripts/Store/ProductGrid.js"));
         }
     }
 }

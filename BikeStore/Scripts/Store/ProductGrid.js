@@ -8,7 +8,7 @@
     $("#menu").kendoMenu();
     $(".textButton").kendoButton();
 
-    $("#roleGrid").kendoGrid({
+    $("#productGrid").kendoGrid({
         sortable: true,
         groupable: true,
         scrollable: true,
@@ -19,14 +19,15 @@
         dataSource: {
             transport: {
                 read: {
-                    url: "/RoleManagement/GetUsersJSON",
+                    url: "/Store/getGoods",
                     dataType: "Json"
                 }
             }
         },
         columns: [
-            { field: "Email", title: "Email" },
-            { field: "Id", template: "<a href='/RoleManagement/AssignRole/${Id}'>Assign role</a>" }
+            { field: "Name", title: "Name" },
+            { field: "Price", title: "Price" },
+            { field: "Amount", title: "Amount" }
         ]
     });
 });

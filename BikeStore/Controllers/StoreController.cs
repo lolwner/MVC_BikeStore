@@ -21,9 +21,10 @@ namespace BikeStore.Controllers
 
         public ActionResult ShowGoods()
         {
-            return View();
+            return View(_goodRepository.Get().ToList());
         }
 
+        
         public JsonResult getGoods()
         {
             return Json(_goodRepository.Get().ToList(), JsonRequestBehavior.AllowGet);

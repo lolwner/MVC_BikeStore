@@ -120,20 +120,19 @@ namespace BikeStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Name, Price, Description, Amount, ManufacturerId, TypeId")]Good good)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _goodRepository.Insert(good);
-                _goodRepository.Save();
-                return RedirectToAction("ControlPanel");
+                if (ModelState.IsValid)
+                {
+                    _goodRepository.Insert(good);
+                    _goodRepository.Save();
+                    return RedirectToAction("ControlPanel");
+                }
             }
-            //try
-            //{
-            //    _goodRepository.Save();
-            //}
-            //catch (DataException)
-            //{
-            //    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            //}
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
             return View(good);
         }
 

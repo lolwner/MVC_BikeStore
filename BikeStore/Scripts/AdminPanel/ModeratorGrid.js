@@ -14,7 +14,7 @@
         scrollable: true,
         height: "300px",
         pageable: {
-            pageSizes: 10
+            pageSize: 10
         },
         dataSource: {
             transport: {

@@ -251,6 +251,8 @@
     <Content Include="Content\KendoGrid\kendo.default.min.css" />
     <Content Include="Content\KendoGrid\kendo.rtl.min.css" />
     <Content Include="Content\KendoGrid\site.css" />
+    <Content Include="Content\Store\jquery.gridly.css" />
+    <Content Include="Content\Store\sample.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1004,6 +1006,7 @@
     <Content Include="Content\KendoGrid\fonts\glyphs\WebComponentsIcons.eot" />
     <Content Include="Content\KendoGrid\fonts\glyphs\WebComponentsIcons.ttf" />
     <Content Include="Content\KendoGrid\fonts\glyphs\WebComponentsIcons.woff" />
+    <Content Include="Content\Store\jquery.gridly.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1020,7 +1023,13 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\RoleManagement\RoleGrid.js" />
     <Content Include="Scripts\Services\JsonCardModule.js" />
+    <Content Include="Scripts\Store\jquery.gridly.js.map" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\Store\jquery.gridly.js" />
+    <Content Include="Scripts\Store\jquery.min.js" />
+    <Content Include="Scripts\Store\ProductGrid.js" />
+    <Content Include="Scripts\Store\rainbow.js" />
+    <Content Include="Scripts\Store\ShowGoods.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1065,6 +1074,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\_ModeratorLayout.cshtml" />
     <Content Include="Views\AdminPanel\ControlPanel.cshtml" />
+    <Content Include="Views\Shared\_StoreLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
